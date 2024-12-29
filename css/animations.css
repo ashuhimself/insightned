@@ -1,0 +1,456 @@
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1, .hero p, .cta-group {
+    opacity: 0;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.hero h1 {
+    animation-delay: 0.2s;
+}
+
+.hero p {
+    animation-delay: 0.4s;
+}
+
+.cta-group {
+    animation-delay: 0.6s;
+}
+
+/* Navigation Hover Effects */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: var(--text-color);
+        margin: 5px 0;
+        transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Service Card Animations */
+.service-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.2s; }
+.service-card:nth-child(2) { animation-delay: 0.4s; }
+.service-card:nth-child(3) { animation-delay: 0.6s; }
+.service-card:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Case Study Card Hover Animation */
+.case-study-card {
+    transition: transform 0.3s ease;
+}
+
+.case-study-card:hover {
+    transform: translateY(-10px);
+}
+
+@keyframes dataFlow {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+/* Line Chart Animation */
+@keyframes drawLine {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+/* Complex Data Flow Animation */
+@keyframes floatingData {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.floating-data {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.data-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 196, 204, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 196, 204, 0.4);
+    animation: floatingData 8s infinite linear;
+}
+
+/* Create multiple data particles with different positions and delays */
+.data-particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.data-particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+.data-particle:nth-child(3) { left: 35%; animation-delay: 4s; }
+.data-particle:nth-child(4) { left: 50%; animation-delay: 1s; }
+.data-particle:nth-child(5) { left: 65%; animation-delay: 3s; }
+.data-particle:nth-child(6) { left: 80%; animation-delay: 5s; }
+.data-particle:nth-child(7) { left: 90%; animation-delay: 2.5s; }
+
+/* Network Connection Lines */
+@keyframes connectLines {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.collision-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.moving-shape {
+    position: absolute;
+    opacity: 0.15;
+    transition: transform 0.3s ease;
+}
+
+.moving-shape:nth-child(1) {
+    top: 20%;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: var(--accent-color);
+    border-radius: 40%;
+    animation: moveRight 12s infinite ease-in-out;
+}
+
+.moving-shape:nth-child(2) {
+    top: 40%;
+    right: -100px;
+    width: 180px;
+    height: 180px;
+    background: var(--primary-color);
+    border-radius: 45%;
+    animation: moveLeft 12s infinite ease-in-out;
+}
+
+.moving-shape:nth-child(3) {
+    bottom: 20%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: var(--secondary-color);
+    border-radius: 35%;
+    animation: moveUp 12s infinite ease-in-out;
+}
+
+/* Bubble Animation */
+@keyframes bubble {
+    0% {
+        transform: scale(0) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1) translateY(-25px);
+    }
+    100% {
+        transform: scale(0.5) translateY(-50px);
+        opacity: 0;
+    }
+}
+
+.bubble {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bubble 1.5s ease-out forwards;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Shape Movement Animations */
+@keyframes moveRight {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+        left: -100px;
+    }
+    50% {
+        transform: translateX(calc(80vw)) rotate(360deg);
+        left: -100px;
+    }
+}
+
+@keyframes moveLeft {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+        right: -100px;
+    }
+    50% {
+        transform: translateX(calc(-80vw)) rotate(-360deg);
+        right: -100px;
+    }
+}
+
+@keyframes moveUp {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        bottom: -100px;
+    }
+    50% {
+        transform: translateY(calc(-80vh)) rotate(360deg);
+        bottom: -100px;
+    }
+}
+
+/* Data Particles Animation */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: particleFlow 15s infinite linear;
+    opacity: 0.3;
+}
+
+@keyframes particleFlow {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* Data Stream Lines */
+.hero .data-streams {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.data-stream {
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: linear-gradient(to bottom, 
+        transparent,
+        rgba(0, 196, 204, 0.6),
+        transparent);
+    animation: streamFlow 3s infinite;
+    box-shadow: 0 0 8px rgba(0, 196, 204, 0.4);
+}
+
+@keyframes streamFlow {
+    0% {
+        transform: translateY(-100%) translateX(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%) translateX(20px);
+        opacity: 0;
+    }
+}
+
+/* Make content position relative to stay above animations */
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Add SVG Line Chart */
+.hero-chart {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+/* Matrix Digital Rain Effect */
+@keyframes digitalRain {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.digital-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.rain-column {
+    position: absolute;
+    top: -20px;
+    color: #0ff;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+    text-shadow: 0 0 8px #0ff, 0 0 12px #0ff;
+    animation: digitalRain 4s linear infinite;
+}
+
+/* Neural Network Connection Effect */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.neural-network {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.node {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
+    animation: pulse 1.5s ease-in-out infinite;
+}
