@@ -125,10 +125,97 @@ function createNeuralNetwork() {
     svg.insertBefore(defs, svg.firstChild);
 }
 
+function createDataMesh() {
+    const container = document.querySelector('.data-mesh');
+    const nodeCount = 30;
+    const nodes = [];
+    const connections = [];
+
+    // Create nodes
+    for (let i = 0; i < nodeCount; i++) {
+        const node = document.createElement('div');
+        node.className = 'mesh-node';
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        node.style.left = `${x}%`;
+        node.style.top = `${y}%`;
+        container.appendChild(node);
+        nodes.push({ element: node, x, y });
+    }
+
+    // Create SVG for connections
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    svg.style.position = 'absolute';
+    svg.style.top = '0';
+    svg.style.left = '0';
+    container.appendChild(svg);
+
+    // Add gradient definitions
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    svg.appendChild(defs);
+
+    // Create gradient for data flow
+    const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+    gradient.setAttribute('id', 'dataFlowGradient');
+    gradient.innerHTML = `
+        <stop offset="0%" style="stop-color: rgba(0, 196, 204, 0.1)"/>
+        <stop offset="50%" style="stop-color: rgba(0, 196, 204, 0.6)"/>
+        <stop offset="100%" style="stop-color: rgba(0, 196, 204, 0.1)"/>
+    `;
+    defs.appendChild(gradient);
+
+    // Connect nodes
+    nodes.forEach((node1, i) => {
+        nodes.slice(i + 1).forEach(node2 => {
+            const dx = node1.x - node2.x;
+            const dy = node1.y - node2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < 30) {
+                const connection = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const controlPoint1X = node1.x + (node2.x - node1.x) * 0.3;
+                const controlPoint1Y = node1.y + (node2.y - node1.y) * 0.1;
+                const controlPoint2X = node1.x + (node2.x - node1.x) * 0.7;
+                const controlPoint2Y = node1.y + (node2.y - node1.y) * 0.9;
+                
+                const pathData = `M ${node1.x}% ${node1.y}% C ${controlPoint1X}% ${controlPoint1Y}%, ${controlPoint2X}% ${controlPoint2Y}%, ${node2.x}% ${node2.y}%`;
+                
+                connection.setAttribute('d', pathData);
+                connection.setAttribute('stroke', 'url(#dataFlowGradient)');
+                connection.setAttribute('stroke-width', '2');
+                connection.setAttribute('fill', 'none');
+                connection.classList.add('mesh-connection');
+                
+                svg.appendChild(connection);
+                connections.push(connection);
+            }
+        });
+    });
+
+    // Add data particles
+    connections.forEach(connection => {
+        const particle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        particle.setAttribute('r', '3');
+        particle.setAttribute('fill', 'rgba(0, 196, 204, 0.8)');
+        particle.classList.add('mesh-particle');
+        
+        const animateMotion = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
+        animateMotion.setAttribute('dur', '3s');
+        animateMotion.setAttribute('repeatCount', 'indefinite');
+        animateMotion.setAttribute('path', connection.getAttribute('d'));
+        
+        particle.appendChild(animateMotion);
+        svg.appendChild(particle);
+    });
+}
+
 // Initialize animations
 document.addEventListener('DOMContentLoaded', function() {
     createDigitalRain();
     createNeuralNetwork();
+    createDataMesh();
 });
 
 // Form handling

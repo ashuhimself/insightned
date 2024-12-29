@@ -46,25 +46,28 @@
     <header class="hero">
         <div class="digital-rain"></div>
         <div class="neural-network"></div>
+        <div class="data-mesh"></div>
         <svg class="hero-chart" viewBox="0 0 1000 600" preserveAspectRatio="none">
             <!-- Data Pipeline Path -->
-            <path class="pipeline-path" d="M0,300 C200,300 300,100 500,100 S800,300 1000,300" 
-                stroke="rgba(0, 196, 204, 0.6)" 
-                stroke-width="4" 
-                fill="none" 
-                style="animation: drawLine 3s infinite linear;">
+            <path class="pipeline-path" 
+                d="M0,300 C200,300 300,100 500,100 S800,300 1000,300" 
+                stroke="rgba(0, 196, 204, 0.8)" 
+                stroke-width="3" 
+                fill="none">
             </path>
             
             <!-- Line Chart Path -->
             <path class="chart-line" 
                 d="M0,400 Q250,200 500,300 T1000,200" 
-                stroke="rgba(255, 255, 255, 0.4)" 
-                stroke-width="3" 
-                fill="none" 
-                stroke-dasharray="1000"
-                stroke-dashoffset="1000"
-                style="animation: drawLine 4s infinite linear;">
+                stroke="rgba(255, 255, 255, 0.6)" 
+                stroke-width="2" 
+                fill="none">
             </path>
+
+            <!-- Additional Data Points -->
+            <circle class="data-point" cx="250" cy="200" r="4" fill="rgba(0, 196, 204, 0.8)"/>
+            <circle class="data-point" cx="500" cy="300" r="4" fill="rgba(0, 196, 204, 0.8)"/>
+            <circle class="data-point" cx="750" cy="250" r="4" fill="rgba(0, 196, 204, 0.8)"/>
         </svg>
         <div class="data-streams">
             <div class="data-stream" style="left: 10%; animation-delay: 0s;"></div>
@@ -225,7 +228,7 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
+            <h2 class="section-title">Our Services & Products</h2>
             <p class="section-subtitle">Transforming Data into Business Value</p>
             
             <div class="services-grid">
@@ -315,7 +318,7 @@
     <!-- Case Studies Section -->
     <section id="case-studies" class="case-studies">
         <div class="container">
-            <h2 class="section-title">Recent Work</h2>
+            <h2 class="section-title">Case Studies</h2>
             <p class="section-subtitle">Success Stories from Our Clients</p>
 
             <div class="case-studies-grid">
@@ -430,15 +433,15 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@insightned.com</span>
+                            <span>ashutosh@insightned.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (234) 567-890</span>
+                            <span>+91 9956167803</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Data Street, Analytics City</span>
+                            <span>HSR Layout, Bangalore, Karnataka, India</span>
                         </div>
                     </div>
                 </div>
@@ -446,7 +449,8 @@
                 <!-- Contact Form -->
                 <div class="footer-section" id="footer-contact">
                     <h4>Hi 👋</h4>
-                    <form class="footer-contact-form" id="contactForm">
+                    <form class="footer-contact-form" id="contactForm" action="/api/contact.php" method="POST">
+                        <input type="hidden" name="csrf_token" id="csrf_token">
                         <div class="form-row">
                             <input type="text" id="name" name="name" placeholder="Full Name" required>
                         </div>
@@ -454,18 +458,18 @@
                             <input type="email" id="email" name="email" placeholder="Email Address" required>
                         </div>
                         <div class="form-row">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-row">
                             <textarea id="message" name="message" placeholder="Message" rows="3" required></textarea>
                         </div>
                         <button type="submit" class="footer-submit-btn">
                             <span class="btn-text">Send Message</span>
-                            <span class="btn-loading">
+                            <span class="btn-loading" style="display: none;">
                                 <i class="fas fa-spinner fa-spin"></i>
                             </span>
-                            <span class="btn-success">
-                                <i class="fas fa-check"></i> Sent
+                            <span class="btn-success" style="display: none;">
+                                <i class="fas fa-check"></i> Sent!
                             </span>
                         </button>
                     </form>

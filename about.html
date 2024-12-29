@@ -171,15 +171,15 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>contact@insightned.com</span>
+                            <span>ashutosh@insightned.com</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+1 (234) 567-890</span>
+                            <span>+91 9956167803</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>123 Data Street, Analytics City</span>
+                            <span>HSR Layout, Bangalore, Karnataka, India</span>
                         </div>
                     </div>
                 </div>
@@ -187,7 +187,8 @@
                 <!-- Contact Form -->
                 <div class="footer-section" id="footer-contact">
                     <h4>Hi 👋</h4>
-                    <form class="footer-contact-form" id="contactForm">
+                    <form class="footer-contact-form" id="contactForm" action="/api/contact.php" method="POST">
+                        <input type="hidden" name="csrf_token" id="csrf_token">
                         <div class="form-row">
                             <input type="text" id="name" name="name" placeholder="Full Name" required>
                         </div>
@@ -195,18 +196,18 @@
                             <input type="email" id="email" name="email" placeholder="Email Address" required>
                         </div>
                         <div class="form-row">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
                         </div>
                         <div class="form-row">
                             <textarea id="message" name="message" placeholder="Message" rows="3" required></textarea>
                         </div>
                         <button type="submit" class="footer-submit-btn">
                             <span class="btn-text">Send Message</span>
-                            <span class="btn-loading">
+                            <span class="btn-loading" style="display: none;">
                                 <i class="fas fa-spinner fa-spin"></i>
                             </span>
-                            <span class="btn-success">
-                                <i class="fas fa-check"></i> Sent
+                            <span class="btn-success" style="display: none;">
+                                <i class="fas fa-check"></i> Sent!
                             </span>
                         </button>
                     </form>
