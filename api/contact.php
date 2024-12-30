@@ -1,6 +1,15 @@
 <?php
+// Production error handling
+error_reporting(0);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/../logs/error.log');
+
 require_once 'config.php';
 header('Content-Type: application/json');
+header("X-Frame-Options: DENY");
+header("X-XSS-Protection: 1; mode=block");
+header("X-Content-Type-Options: nosniff");
 
 try {
     // Validate CSRF token

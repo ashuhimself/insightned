@@ -62,10 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const formData = new FormData(this);
             
-            const response = await fetch('/api/contact.php', {
-                method: 'POST',
-                body: formData
-            });
+            const response = await fetch(
+                window.location.pathname.includes('/services/') ? '../api/contact.php' : 'api/contact.php',
+                {
+                    method: 'POST',
+                    body: formData
+                }
+            );
             
             const data = await response.json();
             

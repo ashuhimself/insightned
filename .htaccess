@@ -1,7 +1,26 @@
+# Enable HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
 # Security Headers
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 Header set Referrer-Policy "strict-origin-when-cross-origin"
 Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" 
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+# Cache Control
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|js|css)$">
+    Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|README\.md">
+    Order allow,deny
+    Deny from all
+</FilesMatch> 
