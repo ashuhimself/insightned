@@ -306,18 +306,18 @@ body {
     padding: 60px 0;
     background: var(--light-bg);
     min-height: 550px;
-    position: absolute;
+    position: relative;
     width: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out, transform 0.8s ease-out;
-    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: none;
 }
 
 .industries.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    display: block;
 }
 
 .domains-horizontal {
@@ -346,36 +346,39 @@ body {
     padding: 60px 0;
     background: var(--white);
     min-height: 550px;
-    position: absolute;
+    position: relative;
     width: 100%;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out, transform 0.8s ease-out;
-    transform: translateY(20px);
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: none;
 }
 
 .tech-stack.active {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    display: block;
 }
 
 .tech-stack-grid {
     margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
 }
 
 .tech-row {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     align-items: center;
     gap: 2rem;
 }
 
 .tech-item {
-    flex: 0 0 150px;
+    width: 100%;
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -383,6 +386,7 @@ body {
     background: var(--white);
     border-radius: 8px;
     transition: transform 0.3s ease;
+    min-height: 80px;
 }
 
 .tech-item:hover {
@@ -390,22 +394,52 @@ body {
 }
 
 .tech-item img {
-    max-width: 100%;
-    height: auto;
-    max-height: 40px;
+    width: 100%;
+    max-width: 120px;
+    height: 50px;
     object-fit: contain;
 }
 
-/* Responsive Design */
+/* Media Queries for Tech Stack */
+@media (max-width: 1200px) {
+    .tech-row {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .tech-item img {
+        max-width: 100px;
+        height: 45px;
+    }
+}
+
 @media (max-width: 768px) {
     .tech-row {
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
     }
     
     .tech-item {
-        flex: 0 0 120px;
+        min-height: 70px;
     }
-} 
+    .tech-item img {
+        max-width: 90px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tech-row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+    .tech-item {
+        min-height: 60px;
+        padding: 0.4rem;
+    }
+    .tech-item img {
+        max-width: 70px;
+        height: 30px;
+    }
+}
 
 /* Add specific adjustments for certain logos */
 .tech-item img[alt="Python"],
@@ -982,8 +1016,9 @@ body {
 .toggle-sections-container {
     position: relative;
     min-height: 650px;
-    padding: 60px 0;
+    padding: 40px 0;
     background: var(--light-bg);
+    margin-top: 40px;
 } 
 
 .hero-background {
