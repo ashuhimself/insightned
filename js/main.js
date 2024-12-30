@@ -33,12 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch CSRF token
     fetch('api/csrf.php', {
         method: 'GET',
-        credentials: 'same-origin' // This is important for cookies
+        credentials: 'same-origin'
     })
         .then(response => response.json())
         .then(data => {
             document.getElementById('csrf_token').value = data.token;
-            console.log('CSRF token set:', data.token); // For debugging
+            console.log('CSRF token set:', data.token);
+            console.log('Cookie value:', document.cookie);
         })
         .catch(error => {
             console.error('Error fetching CSRF token:', error);

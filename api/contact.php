@@ -29,8 +29,13 @@ try {
     error_log("Database connected successfully");
     
     // Validate CSRF token
+    error_log("Cookie CSRF token: " . ($_COOKIE['csrf_token'] ?? 'not set'));
+    error_log("POST CSRF token: " . ($_POST['csrf_token'] ?? 'not set'));
+
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_COOKIE['csrf_token']) {
         error_log("CSRF token validation failed");
+        error_log("Cookie token: " . ($_COOKIE['csrf_token'] ?? 'null'));
+        error_log("Form token: " . ($_POST['csrf_token'] ?? 'null'));
         throw new Exception('Invalid CSRF token');
     }
 

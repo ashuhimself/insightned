@@ -1,5 +1,6 @@
 <?php
 header('Content-Type: application/json');
+header('Access-Control-Allow-Credentials: true');
 
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -12,15 +13,17 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 // Set cookie with the token
-setcookie('csrf_token', $_SESSION['csrf_token'], 
-    time() + 7200,  // expires in 2 hours
-    '/',           // path
-    '',           // domain
-    true,         // secure
-    true          // httponly
-);
+setcookie('csrf_token', $_SESSION['csrf_token'], [
+    'expires' => time() + 7200,
+    'path' => '/',
+    'domain' => '',
+    'secure' => false,     // Changed to false temporarily
+    'httponly' => false,   // Changed to false temporarily
+    'samesite' => 'Lax'   // Changed to Lax
+]);
 
 // Ensure headers are sent
+header('X-Debug-Token: ' . $_SESSION['csrf_token']);
 if (session_status() === PHP_SESSION_ACTIVE) {
     session_write_close();
 }
