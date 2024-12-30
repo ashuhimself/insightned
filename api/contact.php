@@ -1,7 +1,7 @@
 <?php
 // Production error handling
-error_reporting(0);
-ini_set('display_errors', 0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../logs/error.log');
 
@@ -12,6 +12,14 @@ header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
 
 try {
+    // Test database connection
+    $db = new PDO(
+        "mysql:host=".DB_HOST.";dbname=".DB_NAME,
+        DB_USER,
+        DB_PASS
+    );
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     // Validate CSRF token
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_COOKIE['csrf_token']) {
         throw new Exception('Invalid CSRF token');
@@ -39,8 +47,15 @@ try {
         throw new Exception('Failed to save message');
     }
 
+} catch (PDOException $e) {
+    error_log("Database Error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'Database connection failed']);
+    exit;
 } catch (Exception $e) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    error_log("General Error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'An error occurred']);
+    exit;
 }
 ?> 
