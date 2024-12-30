@@ -68,27 +68,6 @@ body {
     overflow: hidden;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      repeating-linear-gradient(0deg,
-        transparent,
-        transparent 50px,
-        rgba(255, 255, 255, 0.1) 50px,
-        rgba(255, 255, 255, 0.1) 51px),
-      repeating-linear-gradient(90deg,
-        transparent,
-        transparent 50px,
-        rgba(255, 255, 255, 0.1) 50px,
-        rgba(255, 255, 255, 0.1) 51px);
-    animation: dataFlow 15s linear infinite;
-}
-
 .hero h1 {
     font-size: 3.5rem;
     line-height: 1.2;
@@ -991,4 +970,35 @@ body {
     min-height: 650px;
     padding: 60px 0;
     background: var(--light-bg);
+} 
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    z-index: 1;
+}
+
+#dataCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    z-index: 2;
+} 
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    z-index: 1;
 } 

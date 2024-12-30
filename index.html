@@ -32,7 +32,7 @@
                 <a href="#case-studies">Case Studies</a>
                 <a href="about.html">About</a>
                 <!-- <a href="#blog">Blog</a> -->
-                <a href="#footer-contact" class="cta-button">Get Started</a>
+                <a href="contact.html" class="cta-button">Contact Us</a>
             </div>
             <button class="mobile-menu-toggle" aria-label="Toggle Menu">
                 <span></span>
@@ -44,6 +44,11 @@
 
     <!-- Hero Section -->
     <header class="hero">
+        <div class="hero-background">
+            <canvas id="dataCanvas"></canvas>
+            <div class="particles"></div>
+            <div class="gradient-overlay"></div>
+        </div>
         <div class="container">
             <svg class="hero-chart" viewBox="0 0 1000 600" preserveAspectRatio="none">
                 <!-- Data Pipeline Path -->
@@ -80,7 +85,7 @@
                 <h1>Transform Your Business with Data-Driven Intelligence</h1>
                 <p>Unlock insights and drive growth with our advanced analytics, AI solutions, and data engineering expertise.</p>
                 <div class="cta-group">
-                    <a href="#footer-contact" class="primary-cta">Start Your Data Journey</a>
+                    <a href="contact.html" class="primary-cta">Start Your Data Journey</a>
                     <a href="#services" class="secondary-cta">Explore Solutions</a>
                 </div>
             </div>
@@ -222,8 +227,8 @@
                     <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Data Analytics</h3>
-                    <p>Transform raw data into actionable insights that drive business growth.</p>
+                    <h3>Data Architecture and Strategy</h3>
+                    <p>Optimizing data processes and integration for better decision-making.</p>
                     <a href="services/data-analytics.html" class="service-cta">Learn More →</a>
                 </div>
 
@@ -233,7 +238,7 @@
                         <i class="fas fa-database"></i>
                     </div>
                     <h3>Data Engineering</h3>
-                    <p>Build scalable data infrastructure and reliable pipelines.</p>
+                    <p>Transforming data for insights across industries.</p>
                     <a href="services/data-engineering.html" class="service-cta">Learn More →</a>
                 </div>
 
@@ -242,8 +247,8 @@
                     <div class="service-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3>MLOps Solutions</h3>
-                    <p>Streamline ML operations from development to deployment.</p>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Custom AI solutions and predictive analytics for smart decisions.</p>
                     <a href="services/mlops.html" class="service-cta">Learn More →</a>
                 </div>
 
@@ -473,5 +478,7 @@
         </div>
     </footer>
     <script src="js/section-toggle.js"></script>
+    <script src="js/data-mesh.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html> 
