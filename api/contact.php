@@ -10,10 +10,17 @@ header('Content-Type: application/json');
 header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
+header('Access-Control-Allow-Origin: https://www.insightned.com');
+header('Access-Control-Allow-Credentials: true');
 
 // Create logs directory if it doesn't exist
 if (!file_exists(__DIR__ . '/../logs')) {
     mkdir(__DIR__ . '/../logs', 0755, true);
+}
+
+// Start session if not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
 try {
@@ -29,13 +36,16 @@ try {
     error_log("Database connected successfully");
     
     // Validate CSRF token
-    error_log("Cookie CSRF token: " . ($_COOKIE['csrf_token'] ?? 'not set'));
-    error_log("POST CSRF token: " . ($_POST['csrf_token'] ?? 'not set'));
+    $cookieToken = $_COOKIE['csrf_token'] ?? null;
+    $postToken = $_POST['csrf_token'] ?? null;
+    $sessionToken = $_SESSION['csrf_token'] ?? null;
 
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_COOKIE['csrf_token']) {
+    error_log("Cookie Token: " . $cookieToken);
+    error_log("Post Token: " . $postToken);
+    error_log("Session Token: " . $sessionToken);
+
+    if (!$postToken || ($postToken !== $cookieToken && $postToken !== $sessionToken)) {
         error_log("CSRF token validation failed");
-        error_log("Cookie token: " . ($_COOKIE['csrf_token'] ?? 'null'));
-        error_log("Form token: " . ($_POST['csrf_token'] ?? 'null'));
         throw new Exception('Invalid CSRF token');
     }
 

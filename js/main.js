@@ -33,13 +33,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch CSRF token
     fetch('api/csrf.php', {
         method: 'GET',
-        credentials: 'same-origin'
+        credentials: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
     })
         .then(response => response.json())
         .then(data => {
             document.getElementById('csrf_token').value = data.token;
             console.log('CSRF token set:', data.token);
-            console.log('Cookie value:', document.cookie);
+            document.cookie = `csrf_token=${data.token}; path=/; secure; samesite=Lax`;
         })
         .catch(error => {
             console.error('Error fetching CSRF token:', error);
@@ -62,13 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const formData = new FormData(this);
                 
-                const response = await fetch(
-                    window.location.pathname.includes('/services/') ? '../api/contact.php' : 'api/contact.php',
-                    {
-                        method: 'POST',
-                        body: formData
-                    }
-                );
+                const csrfToken = document.cookie.split('; ')
+                    .find(row => row.startsWith('csrf_token='))
+                    ?.split('=')[1];
+                if (csrfToken) {
+                    formData.set('csrf_token', csrfToken);
+                }
+                
+                const response = await fetch('api/contact.php', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
                 
                 const data = await response.json();
                 
