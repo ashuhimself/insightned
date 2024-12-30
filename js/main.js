@@ -29,4 +29,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check on scroll
     window.addEventListener('scroll', animateTextLines);
+    
+    // Generate CSRF token
+    function generateCSRFToken() {
+        return Math.random().toString(36).substring(2) + Date.now().toString(36);
+    }
+    
+    // Set CSRF token when page loads
+    const token = generateCSRFToken();
+    document.cookie = `csrf_token=${token}; path=/; SameSite=Strict; Secure`;
+    const csrfInputs = document.querySelectorAll('input[name="csrf_token"]');
+    csrfInputs.forEach(input => input.value = token);
+    
+    function sanitizeInput(input) {
+        return input.replace(/[<>]/g, function(match) {
+            return match === '<' ? '&lt;' : '&gt;';
+        });
+    }
+    
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        for (let pair of formData.entries()) {
+            formData.set(pair[0], sanitizeInput(pair[1]));
+        }
+        // Continue with form submission...
+    });
 }); 
