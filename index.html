@@ -44,67 +44,56 @@
 
     <!-- Hero Section -->
     <header class="hero">
-        <div class="digital-rain"></div>
-        <div class="neural-network"></div>
-        <div class="data-mesh"></div>
-        <svg class="hero-chart" viewBox="0 0 1000 600" preserveAspectRatio="none">
-            <!-- Data Pipeline Path -->
-            <path class="pipeline-path" 
-                d="M0,300 C200,300 300,100 500,100 S800,300 1000,300" 
-                stroke="rgba(0, 196, 204, 0.8)" 
-                stroke-width="3" 
-                fill="none">
-            </path>
-            
-            <!-- Line Chart Path -->
-            <path class="chart-line" 
-                d="M0,400 Q250,200 500,300 T1000,200" 
-                stroke="rgba(255, 255, 255, 0.6)" 
-                stroke-width="2" 
-                fill="none">
-            </path>
-
-            <!-- Additional Data Points -->
-            <circle class="data-point" cx="250" cy="200" r="4" fill="rgba(0, 196, 204, 0.8)"/>
-            <circle class="data-point" cx="500" cy="300" r="4" fill="rgba(0, 196, 204, 0.8)"/>
-            <circle class="data-point" cx="750" cy="250" r="4" fill="rgba(0, 196, 204, 0.8)"/>
-        </svg>
-        <div class="data-streams">
-            <div class="data-stream" style="left: 10%; animation-delay: 0s;"></div>
-            <div class="data-stream" style="left: 20%; animation-delay: 1s;"></div>
-            <div class="data-stream" style="left: 35%; animation-delay: 2s;"></div>
-            <div class="data-stream" style="left: 50%; animation-delay: 0.5s;"></div>
-            <div class="data-stream" style="left: 65%; animation-delay: 1.5s;"></div>
-            <div class="data-stream" style="left: 80%; animation-delay: 2.5s;"></div>
-            <div class="data-stream" style="left: 90%; animation-delay: 3s;"></div>
-        </div>
         <div class="container">
-            <h1>Transform Your Business with Data-Driven Intelligence</h1>
-            <p>Unlock insights and drive growth with our advanced analytics, AI solutions, and data engineering expertise.</p>
-            <div class="cta-group">
-                <a href="#footer-contact" class="primary-cta">Start Your Data Journey</a>
-                <a href="#services" class="secondary-cta">Explore Solutions</a>
+            <svg class="hero-chart" viewBox="0 0 1000 600" preserveAspectRatio="none">
+                <!-- Data Pipeline Path -->
+                <path class="pipeline-path" 
+                    d="M0,300 C200,300 300,100 500,100 S800,300 1000,300" 
+                    stroke="rgba(0, 196, 204, 0.8)" 
+                    stroke-width="3" 
+                    fill="none">
+                </path>
+                
+                <!-- Line Chart Path -->
+                <path class="chart-line" 
+                    d="M0,400 Q250,200 500,300 T1000,200" 
+                    stroke="rgba(255, 255, 255, 0.6)" 
+                    stroke-width="2" 
+                    fill="none">
+                </path>
+
+                <!-- Additional Data Points -->
+                <circle class="data-point" cx="250" cy="200" r="4" fill="rgba(0, 196, 204, 0.8)"/>
+                <circle class="data-point" cx="500" cy="300" r="4" fill="rgba(0, 196, 204, 0.8)"/>
+                <circle class="data-point" cx="750" cy="250" r="4" fill="rgba(0, 196, 204, 0.8)"/>
+            </svg>
+            <div class="data-streams">
+                <div class="data-stream" style="left: 10%; animation-delay: 0s;"></div>
+                <div class="data-stream" style="left: 20%; animation-delay: 1s;"></div>
+                <div class="data-stream" style="left: 35%; animation-delay: 2s;"></div>
+                <div class="data-stream" style="left: 50%; animation-delay: 0.5s;"></div>
+                <div class="data-stream" style="left: 65%; animation-delay: 1.5s;"></div>
+                <div class="data-stream" style="left: 80%; animation-delay: 2.5s;"></div>
+                <div class="data-stream" style="left: 90%; animation-delay: 3s;"></div>
+            </div>
+            <div class="container">
+                <h1>Transform Your Business with Data-Driven Intelligence</h1>
+                <p>Unlock insights and drive growth with our advanced analytics, AI solutions, and data engineering expertise.</p>
+                <div class="cta-group">
+                    <a href="#footer-contact" class="primary-cta">Start Your Data Journey</a>
+                    <a href="#services" class="secondary-cta">Explore Solutions</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Combined Tech & Industries Section -->
-    <section id="tech-industries" class="tech-industries">
-        <div class="container">
-            <div class="section-headers">
-                <div class="header-content active" data-section="tech">
-                    <h2 class="section-title">Our Tech Stack</h2>
-                    <p class="section-subtitle">Powered by Industry-Leading Technologies</p>
-                </div>
-                <div class="header-content" data-section="industries">
-                    <h2 class="section-title">Industries We Serve</h2>
-                    <p class="section-subtitle">Delivering Data Excellence Across Diverse Sectors</p>
-                </div>
-            </div>
-            
-            <div class="content-wrapper">
-                <!-- Industries Content -->
-                <div class="section-content industries-content">
+    <!-- Combined Sections Container -->
+    <div class="toggle-sections-container">
+        <section id="industries" class="industries active">
+            <div class="container">
+                <h2 class="section-title">Industries We Serve</h2>
+                <p class="section-subtitle">Delivering Data Excellence Across Diverse Sectors</p>
+                <div class="industries-content">
                     <div class="domains-horizontal">
                         <div class="domain-card">
                             <div class="domain-icon">
@@ -142,88 +131,84 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Tech Stack Content -->
-                <div class="section-content tech-content active">
-                    <div class="tech-stack-slider">
-                        <div class="slider-track">
-                            <!-- First Slide Group -->
-                            <div class="slide-group">
-                                <!-- Cloud Platforms -->
-                                <div class="tech-item">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" alt="Apache Spark">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg" alt="Google Cloud Platform">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg" alt="Microsoft Azure">
-                                </div>
-                                <!-- ML/AI Tools -->
-                                <div class="tech-item">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg" alt="PyTorch">
-                                </div>
-                                <!-- Databases -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg" alt="PostgreSQL">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg" alt="MongoDB">
-                                </div>
-                                <!-- <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/snowflake/snowflake-ar21.svg" alt="Snowflake">
-                                </div> -->
-                                <!-- Big Data Tools -->
-                                <div class="tech-item">
-                                    <img src="images/logos/Airflow.svg" alt="Apache Airflow">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-ar21.svg" alt="Apache Kafka">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/apache_hadoop/apache_hadoop-ar21.svg" alt="Hadoop">
-                                </div>
-                                <!-- DevOps Tools -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-ar21.svg" alt="Kubernetes">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg" alt="Docker">
-                                </div>
-                                <!-- <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-ar21.svg" alt="Jenkins">
-                                </div> -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-ar21.svg" alt="Terraform">
-                                </div>
-                                <!-- Version Control -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub">
-                                </div>
-                                <!-- Data Processing Platforms -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/databricks/databricks-ar21.svg" alt="Databricks">
-                                </div>
-                                <!-- Programming Languages -->
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python">
-                                </div>
-                                <div class="tech-item">
-                                    <img src="https://www.vectorlogo.zone/logos/scala-lang/scala-lang-ar21.svg" alt="Scala">
-                                </div>
+        <section id="tech-stack" class="tech-stack">
+            <div class="container">
+                <h2 class="section-title">Our Tech Stack</h2>
+                <p class="section-subtitle">Powered by Industry-Leading Technologies</p>
+                <div class="tech-content">
+                    <div class="tech-stack-grid">
+                        <!-- Tech Stack Rows -->
+                        <div class="tech-row">
+                            <!-- Technology Items -->
+                            <div class="tech-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-ar21.svg" alt="Google Cloud Platform">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg" alt="Microsoft Azure">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-ar21.svg" alt="Kubernetes">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/docker/docker-ar21.svg" alt="Docker">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-ar21.svg" alt="Terraform">
+                            </div>
+                        </div>
+                        <!-- Data & Analytics Row -->
+                        <div class="tech-row">
+                            <div class="tech-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" alt="Apache Spark">
+                            </div>
+                            <div class="tech-item">
+                                <img src="images/logos/Airflow.svg" alt="Apache Airflow">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/apache_kafka/apache_kafka-ar21.svg" alt="Apache Kafka">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg" alt="PostgreSQL">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/mongodb/mongodb-ar21.svg" alt="MongoDB">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/databricks/databricks-ar21.svg" alt="Databricks">
+                            </div>
+                        </div>
+                        <!-- ML & Programming Row -->
+                        <div class="tech-row">
+                            <div class="tech-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="TensorFlow">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/PyTorch_logo_icon.svg" alt="PyTorch">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/python/python-ar21.svg" alt="Python">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/scala-lang/scala-lang-ar21.svg" alt="Scala">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/github/github-ar21.svg" alt="GitHub">
+                            </div>
+                            <div class="tech-item">
+                                <img src="https://www.vectorlogo.zone/logos/apache_hadoop/apache_hadoop-ar21.svg" alt="Hadoop">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <!-- Services Section -->
     <section id="services" class="services">
@@ -487,7 +472,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="js/main.js"></script>
+    <script src="js/section-toggle.js"></script>
 </body>
 </html> 

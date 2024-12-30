@@ -606,3 +606,49 @@
 .mesh-particle:nth-child(4n+1) { animation-delay: 0.75s; }
 .mesh-particle:nth-child(4n+2) { animation-delay: 1.5s; }
 .mesh-particle:nth-child(4n+3) { animation-delay: 2.25s; }
+
+/* Slider Animation */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Tech stack continuous horizontal scroll */
+.slider-track {
+    animation: slide 40s linear infinite;
+}
+
+/* Hover effects for domain cards */
+@keyframes cardHover {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.domain-card:hover {
+    animation: cardHover 0.3s ease;
+}
+
+/* Fade transitions for section switching */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.section-content.active {
+    animation: fadeIn 0.3s ease-in-out;
+}
