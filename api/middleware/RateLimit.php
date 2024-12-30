@@ -1,12 +1,16 @@
 <?php
 class RateLimit {
-    private $redis;
+    private $db;
     private $maxRequests = 100;  // Max requests per window
     private $timeWindow = 3600;  // Time window in seconds (1 hour)
 
     public function __construct() {
-        $this->redis = new Redis();
-        $this->redis->connect('127.0.0.1', 6379);
+        // Using DB to store rate limiting data
+        $this->db = new PDO(
+            "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']}", 
+            $_ENV['DB_USER'], 
+            $_ENV['DB_PASS']
+        );
     }
 
     public function checkLimit($ip) {
