@@ -3,5 +3,9 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /private/
 Allow: /
+Allow: /services/
+Allow: /case-studies.html
+Allow: /about.html
+Allow: /contact.html
 
-Sitemap: https://yourdomain.com/sitemap.xml 
+Sitemap: https://insightned.com/sitemap.xml 
