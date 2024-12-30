@@ -47,12 +47,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const formData = new FormData(this);
-        for (let pair of formData.entries()) {
-            formData.set(pair[0], sanitizeInput(pair[1]));
+        
+        const submitBtn = this.querySelector('.footer-submit-btn');
+        const loadingSpinner = submitBtn.querySelector('.btn-loading');
+        const successIcon = submitBtn.querySelector('.btn-success');
+        const btnText = submitBtn.querySelector('.btn-text');
+        
+        try {
+            // Show loading state
+            btnText.style.display = 'none';
+            loadingSpinner.style.display = 'inline-block';
+            
+            const formData = new FormData(this);
+            
+            const response = await fetch('/api/contact.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // Show success state
+                loadingSpinner.style.display = 'none';
+                successIcon.style.display = 'inline-block';
+                this.reset();
+                
+                setTimeout(() => {
+                    successIcon.style.display = 'none';
+                    btnText.style.display = 'inline-block';
+                }, 3000);
+            } else {
+                throw new Error(data.error);
+            }
+            
+        } catch (error) {
+            alert('Error: ' + error.message);
+            loadingSpinner.style.display = 'none';
+            btnText.style.display = 'inline-block';
         }
-        // Continue with form submission...
     });
 }); 

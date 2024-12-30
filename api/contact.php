@@ -1,29 +1,37 @@
 <?php
 require_once 'config.php';
+header('Content-Type: application/json');
 
-class ContactHandler {
-    private $db;
+try {
+    // Validate CSRF token
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_COOKIE['csrf_token']) {
+        throw new Exception('Invalid CSRF token');
+    }
+
+    // Initialize contact handler
+    $handler = new ContactHandler();
     
-    public function __construct() {
-        // Using DB credentials from .env
-        $this->db = new PDO(
-            "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']}", 
-            $_ENV['DB_USER'], 
-            $_ENV['DB_PASS']
-        );
+    // Validate inputs
+    $data = [
+        'name' => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING),
+        'email' => filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL),
+        'phone' => filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING),
+        'message' => filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING)
+    ];
+
+    if (!$data['name'] || !$data['email'] || !$data['message']) {
+        throw new Exception('Please fill all required fields');
     }
 
-    public function saveContact($data) {
-        $stmt = $this->db->prepare("
-            INSERT INTO contacts (name, email, phone, message, created_at) 
-            VALUES (?, ?, ?, ?, NOW())
-        ");
-        return $stmt->execute([
-            $data['name'],
-            $data['email'],
-            $data['phone'],
-            $data['message']
-        ]);
+    // Save to database
+    if ($handler->saveContact($data)) {
+        echo json_encode(['success' => true, 'message' => 'Message sent successfully']);
+    } else {
+        throw new Exception('Failed to save message');
     }
+
+} catch (Exception $e) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?> 
