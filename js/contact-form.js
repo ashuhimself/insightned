@@ -21,7 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Validate form data
         if (!data.name || !data.email || !data.message) {
-            alert('Please fill in all required fields.');
+            const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = 'Please fill in all required fields.';
+                form.insertBefore(errorDiv, form.firstChild);
+                setTimeout(() => errorDiv.remove(), 5000);
             btnLoading.style.display = 'none';
             btnText.style.display = 'inline-block';
             return;
@@ -38,8 +42,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const result = await response.json();
             
-            if (result.success) {
-                // Show success state
+            if (!response.ok) {
+                throw new Error(`Server error (${response.status})`);
+            }
+            if (!result.success) {
+                throw new Error(result.message || 'Form submission failed');
+            }
+            
+            // Show success state
                 btnLoading.style.display = 'none';
                 btnSuccess.style.display = 'inline-block';
                 form.reset();
@@ -49,16 +59,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     btnSuccess.style.display = 'none';
                     btnText.style.display = 'inline-block';
                 }, 3000);
-            } else {
-                throw new Error(result.message || 'Error submitting form');
-            }
         } catch (error) {
             // Reset button state
             btnLoading.style.display = 'none';
             btnText.style.display = 'inline-block';
             
             // Show error message
-            alert('There was an error submitting your message. Please try again.');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = error.message || 'There was an error submitting your message. Please try again.';
+            form.insertBefore(errorDiv, form.firstChild);
+            setTimeout(() => errorDiv.remove(), 5000);
             console.error('Form submission error:', error);
         }
     });

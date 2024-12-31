@@ -5,13 +5,22 @@ ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../logs/error.log');
 
-// Keep database config
-require_once __DIR__ . '/config.php';
-
-// Match test_email.php exactly
+// Load dependencies first
 require '../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+// Load environment variables and config
+try {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+    require_once __DIR__ . '/config.php';
+} catch (Exception $e) {
+    error_log("Configuration error: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['success' => false, 'message' => 'Server configuration error']);
+    exit;
+}
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -40,25 +49,28 @@ if (!$data || !is_array($data)) {
 }
 
 try {
-    // Validate inputs
-    $data = [
-        'name' => $_POST['name'] ?? '',
-        'email' => $_POST['email'] ?? '',
-        'phone' => $_POST['phone'] ?? '',
-        'message' => $_POST['message'] ?? ''
-    ];
-
+    // Data has already been decoded from JSON at this point
     // Validate required fields
     if (empty($data['name']) || empty($data['email']) || empty($data['message'])) {
-        throw new Exception('Please fill all required fields');
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Please fill all required fields']);
+        exit;
     }
 
     // Save to database
-    $db = new PDO(
-        "mysql:host=".DB_HOST.";dbname=".DB_NAME,
-        DB_USER,
-        DB_PASS
-    );
+    try {
+        $db = new PDO(
+            "mysql:host=".DB_HOST.";dbname=".DB_NAME,
+            DB_USER,
+            DB_PASS
+        );
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        error_log("Database connection failed: " . $e->getMessage());
+        http_response_code(500);
+        echo json_encode(['success' => false, 'message' => 'Database connection failed']);
+        exit;
+    }
     
     // Ensure phone is not null if empty
     $phone = !empty($data['phone']) ? $data['phone'] : '';
@@ -70,19 +82,15 @@ try {
         // Identical setup to test_email.php
 $adminMail = new PHPMailer(true);
 
-echo "Starting email configuration test...\n\n";
+// Initialize email configuration
 
 try {
-            // Enable debug output like test_email.php
-            $adminMail->SMTPDebug = 2; // Enable verbose debug output
+            $adminMail->SMTPDebug = 0; // Disable debug output in production
             $adminMail->Debugoutput = function($str, $level) {
                 error_log("DEBUG: $str");
-                echo "DEBUG: $str\n";
             };
 
-            // Load environment variables exactly like test_email.php
-            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-            $dotenv->load();
+            // Configure SMTP using environment variables
             if (empty($_ENV['MAIL_HOST']) || empty($_ENV['MAIL_PORT']) || 
                 empty($_ENV['MAIL_USERNAME']) || empty($_ENV['MAIL_PASSWORD']) || 
                 empty($_ENV['MAIL_FROM_ADDRESS'])) {
@@ -131,11 +139,12 @@ try {
         // Return success response with email status
         http_response_code(200);
         $message = 'Form data saved successfully. ';
-        if (!$emailStatus['admin'] || !$emailStatus['user']) {
-            $message .= 'However, there were issues sending notification emails. Our team has been notified.';
+        if (!$emailStatus['admin']) {
+            error_log("Failed to send admin notification email");
+            $message .= ' However, there were issues sending notification emails. Our team has been notified.';
         }
         echo json_encode([
-            'status' => 'success',
+            'success' => true,
             'message' => $message,
             'email_status' => $emailStatus
         ]);
