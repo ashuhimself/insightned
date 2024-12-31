@@ -28,18 +28,36 @@ header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
 
 // Get JSON data
+$contentLength = isset($_SERVER['CONTENT_LENGTH']) ? (int)$_SERVER['CONTENT_LENGTH'] : 0;
 $json = file_get_contents('php://input');
-if ($json === false) {
+$receivedLength = strlen($json);
+
+error_log("Expected Content-Length: " . $contentLength . ", Received Length: " . $receivedLength);
+
+if ($json === false || $receivedLength === 0) {
     http_response_code(400);
     echo json_encode(['success' => false, 'message' => 'Failed to read request data']);
     exit;
 }
 
 $data = json_decode($json, true);
+if ($contentLength > $receivedLength) {
+    error_log("Incomplete data received. Expected: " . $contentLength . " bytes, Got: " . $receivedLength . " bytes");
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Incomplete data received. Request was truncated.'
+    ]);
+    exit;
+}
+
 if (json_last_error() !== JSON_ERROR_NONE) {
     error_log("JSON Error: " . json_last_error_msg() . " - Raw input: " . $json);
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Invalid JSON format']);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Invalid JSON format: ' . json_last_error_msg()
+    ]);
     exit;
 }
 
