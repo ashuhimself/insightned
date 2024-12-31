@@ -7,10 +7,23 @@ ini_set('error_log', __DIR__ . '/../logs/error.log');
 
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/../vendor/autoload.php';
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 header('Content-Type: application/json');
+
+// Get JSON data
+$json = file_get_contents('php://input');
+$data = json_decode($json, true);
+
+if (!$data) {
+    echo json_encode(['success' => false, 'message' => 'Invalid JSON data']);
+    exit;
+}
 
 try {
     // Validate inputs

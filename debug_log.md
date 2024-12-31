@@ -59,3 +59,16 @@ telnet smtp.gmail.com 587
 
 For detailed setup instructions: `cat email-setup-instructions.md`
 For comprehensive troubleshooting: `cat troubleshooting-guide.md`
+
+# Change ownership to your user temporarily for installation
+sudo chown -R $USER:$USER /var/www/insightned
+
+# Install Composer dependencies
+composer install
+
+# After installation, set ownership back to www-data
+sudo chown -R www-data:www-data /var/www/insightned
+
+# Set proper permissions
+sudo find /var/www/insightned -type d -exec chmod 755 {} \;
+sudo find /var/www/insightned -type f -exec chmod 644 {} \;
