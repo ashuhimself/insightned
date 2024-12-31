@@ -29,32 +29,22 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => response.json())
             .then(data => {
-                // Hide loading state
-                btnLoading.style.display = 'none';
-                
                 if (data.success) {
-                    // Show success state
-                    btnSuccess.textContent = "We will connect with you shortly";
+                    btnLoading.style.display = 'none';
                     btnSuccess.style.display = 'inline-block';
-                    
-                    // Reset form
-                    footerForm.reset();
-                    
-                    // Reset button state after 5 seconds
+                    this.reset();
                     setTimeout(() => {
                         btnSuccess.style.display = 'none';
                         btnText.style.display = 'inline-block';
-                    }, 5000);
+                    }, 3000);
                 } else {
-                    throw new Error(data.message || 'An error occurred');
+                    throw new Error(data.error || 'Failed to send message');
                 }
             })
             .catch(error => {
-                // Hide loading state
+                alert('We will get back to you shortly.');
                 btnLoading.style.display = 'none';
                 btnText.style.display = 'inline-block';
-                
-                alert('Error: ' + error.message);
             });
         });
     }

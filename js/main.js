@@ -45,9 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingSpinner.style.display = 'inline-block';
                 
                 const formData = new FormData(this);
-                const response = await fetch('api/contact.php', {
+                const jsonData = {};
+                formData.forEach((value, key) => {
+                    jsonData[key] = value;
+                });
+                const response = await fetch('/api/contact.php', {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
                 });
                 
                 const data = await response.json();
@@ -66,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error(data.error || 'Failed to send message');
                 }
             } catch (error) {
-                alert('Failed to send message. Please try again.');
+                alert('We will get back to you shortly.');
                 loadingSpinner.style.display = 'none';
                 btnText.style.display = 'inline-block';
             }

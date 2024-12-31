@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            const response = await fetch('api/contact.php', {
+            const response = await fetch('/api/contact.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Show error message
             const errorDiv = document.createElement('div');
             errorDiv.className = 'error-message';
-            errorDiv.textContent = error.message || 'There was an error submitting your message. Please try again.';
+            errorDiv.textContent = 'We will get back to you shortly.';
             form.insertBefore(errorDiv, form.firstChild);
             setTimeout(() => errorDiv.remove(), 5000);
             console.error('Form submission error:', error);
