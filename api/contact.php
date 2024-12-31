@@ -10,8 +10,6 @@ header('Content-Type: application/json');
 header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
-header('Access-Control-Allow-Origin: https://www.insightned.com');
-header('Access-Control-Allow-Credentials: true');
 
 // Create logs directory if it doesn't exist
 if (!file_exists(__DIR__ . '/../logs')) {
@@ -35,20 +33,6 @@ try {
     // Log connection success
     error_log("Database connected successfully");
     
-    // Validate CSRF token
-    $cookieToken = $_COOKIE['csrf_token'] ?? null;
-    $postToken = $_POST['csrf_token'] ?? null;
-    $sessionToken = $_SESSION['csrf_token'] ?? null;
-
-    error_log("Cookie Token: " . $cookieToken);
-    error_log("Post Token: " . $postToken);
-    error_log("Session Token: " . $sessionToken);
-
-    if (!$postToken || ($postToken !== $cookieToken && $postToken !== $sessionToken)) {
-        error_log("CSRF token validation failed");
-        throw new Exception('Invalid CSRF token');
-    }
-
     // Initialize contact handler
     $handler = new ContactHandler();
     

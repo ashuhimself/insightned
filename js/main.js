@@ -30,25 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', animateTextLines);
     
-    // Fetch CSRF token
-    fetch('api/csrf.php', {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('csrf_token').value = data.token;
-            console.log('CSRF token set:', data.token);
-            document.cookie = `csrf_token=${data.token}; path=/; secure; samesite=Lax`;
-        })
-        .catch(error => {
-            console.error('Error fetching CSRF token:', error);
-        });
-    
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
