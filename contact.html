@@ -53,7 +53,7 @@
                 <!-- Contact Form -->
                 <div class="contact-form-container">
                     <h2>Send us a Message</h2>
-                    <form class="footer-contact-form" id="contactForm" action="api/contact.php" method="POST" autocomplete="off">
+                    <form class="contact-form" id="contactForm" action="api/contact.php" method="POST">
                         <input type="hidden" name="csrf_token" id="csrf_token">
                         <div class="form-row">
                             <input type="text" id="name" name="name" placeholder="Full Name" required 
@@ -71,7 +71,15 @@
                         <div class="form-row">
                             <textarea id="message" name="message" placeholder="How can we help you with your data journey?" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Send Message</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                            <span class="btn-success" style="display: none;">
+                                <i class="fas fa-check"></i> Sent!
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>

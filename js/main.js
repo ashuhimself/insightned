@@ -47,18 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const formData = new FormData(this);
                 
-                const csrfToken = document.cookie.split('; ')
-                    .find(row => row.startsWith('csrf_token='))
-                    ?.split('=')[1];
-                if (csrfToken) {
-                    formData.set('csrf_token', csrfToken);
-                }
-                
                 const response = await fetch('api/contact.php', {
                     method: 'POST',
                     body: formData,
-                    credentials: 'same-origin'
                 });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 
                 const data = await response.json();
                 
@@ -73,11 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         btnText.style.display = 'inline-block';
                     }, 3000);
                 } else {
-                    throw new Error(data.error);
+                    throw new Error(data.error || 'Failed to send message');
                 }
                 
             } catch (error) {
-                alert('Error: ' + error.message);
+                console.error('Submission error:', error);
+                alert('Failed to send message. Please try again.');
                 loadingSpinner.style.display = 'none';
                 btnText.style.display = 'inline-block';
             }
