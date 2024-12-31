@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     loadingSpinner.style.display = 'none';
                     successIcon.style.display = 'inline-block';
+                    alert(data.message || 'Message sent successfully');
                     this.reset();
                     
                     setTimeout(() => {

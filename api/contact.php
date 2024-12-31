@@ -6,6 +6,10 @@ ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../logs/error.log');
 
 require_once 'config.php';
+require_once 'vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 header('Content-Type: application/json');
 
 try {
@@ -30,7 +34,27 @@ try {
     
     $stmt = $db->prepare("INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$data['name'], $data['email'], $data['phone'], $data['message']])) {
-        echo json_encode(['success' => true]);
+        // Send email
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['MAIL_USER'];
+        $mail->Password = $_ENV['MAIL_PASS'];
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
+
+        $mail->setFrom($_ENV['MAIL_USER'], 'Insightned Contact Form');
+        $mail->addAddress($_ENV['MAIL_USER']);
+        $mail->Subject = 'New Contact Form Submission';
+        $mail->Body = "Name: {$data['name']}\n";
+        $mail->Body .= "Email: {$data['email']}\n";
+        $mail->Body .= "Phone: {$data['phone']}\n";
+        $mail->Body .= "Message: {$data['message']}\n";
+
+        $mail->send();
+
+        echo json_encode(['success' => true, 'message' => 'Message sent successfully']);
     } else {
         throw new Exception('Failed to save message');
     }
