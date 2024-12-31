@@ -30,36 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', animateTextLines);
     
-    const contactForms = document.querySelectorAll('#contactForm');
-    contactForms.forEach(form => {
-        form.addEventListener('submit', async function(e) {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const submitBtn = this.querySelector('.footer-submit-btn, .submit-btn');
+            const submitBtn = this.querySelector('.submit-btn, .footer-submit-btn');
             const loadingSpinner = submitBtn.querySelector('.btn-loading');
             const successIcon = submitBtn.querySelector('.btn-success');
             const btnText = submitBtn.querySelector('.btn-text');
             
             try {
-                // Show loading state
                 btnText.style.display = 'none';
                 loadingSpinner.style.display = 'inline-block';
                 
                 const formData = new FormData(this);
-                
                 const response = await fetch('api/contact.php', {
                     method: 'POST',
-                    body: formData,
+                    body: formData
                 });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
                 
                 const data = await response.json();
                 
                 if (data.success) {
-                    // Show success state
                     loadingSpinner.style.display = 'none';
                     successIcon.style.display = 'inline-block';
                     this.reset();
@@ -71,13 +64,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     throw new Error(data.error || 'Failed to send message');
                 }
-                
             } catch (error) {
-                console.error('Submission error:', error);
                 alert('Failed to send message. Please try again.');
                 loadingSpinner.style.display = 'none';
                 btnText.style.display = 'inline-block';
             }
         });
-    });
+    }
 }); 
