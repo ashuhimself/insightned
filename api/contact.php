@@ -1,12 +1,12 @@
 <?php
 // Production error handling
 error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 ini_set('error_log', __DIR__ . '/../logs/error.log');
 
-require_once 'config.php';
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -34,27 +34,75 @@ try {
     
     $stmt = $db->prepare("INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)");
     if ($stmt->execute([$data['name'], $data['email'], $data['phone'], $data['message']])) {
-        // Send email
-        $mail = new PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
-        $mail->SMTPAuth = true;
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASS'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
+        // Send notification email to admin
+        $adminMail = new PHPMailer(true);
+        $adminMail->isSMTP();
+        $adminMail->Host = $_ENV['MAIL_HOST'];
+        $adminMail->SMTPAuth = true;
+        $adminMail->Username = $_ENV['MAIL_USERNAME'];
+        $adminMail->Password = $_ENV['MAIL_PASSWORD'];
+        $adminMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $adminMail->Port = $_ENV['MAIL_PORT'];
+        
+        // Set admin notification email
+        $adminMail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+        $adminMail->addAddress($_ENV['MAIL_FROM_ADDRESS']);
+        $adminMail->addReplyTo($data['email'], $data['name']);
+        
+        // Set admin email content
+        $adminMail->isHTML(true);
+        $adminMail->Subject = 'New Contact Form Submission';
+        $adminMail->Body = "Name: {$data['name']}<br>".
+                          "Email: {$data['email']}<br>".
+                          "Phone: {$data['phone']}<br>".
+                          "Message: {$data['message']}";
+        
+        // Send confirmation email to user
+        $userMail = new PHPMailer(true);
+        $userMail->isSMTP();
+        $userMail->Host = $_ENV['MAIL_HOST'];
+        $userMail->SMTPAuth = true;
+        $userMail->Username = $_ENV['MAIL_USERNAME'];
+        $userMail->Password = $_ENV['MAIL_PASSWORD'];
+        $userMail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $userMail->Port = $_ENV['MAIL_PORT'];
+        
+        // Set user confirmation email
+        $userMail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+        $userMail->addAddress($data['email'], $data['name']);
+        
+        // Set user email content
+        $userMail->isHTML(true);
+        $userMail->Subject = 'Thank you for contacting us';
+        $userMail->Body = "Dear {$data['name']},<br><br>".
+                         "Thank you for contacting us. We have received your message and will respond shortly.<br><br>".
+                         "Best regards,<br>".
+                         $_ENV['MAIL_FROM_NAME'];
+        
+        // Send both emails and log any errors
+        try {
+            $adminMail->send();
+            error_log("Admin notification email sent successfully");
+        } catch (Exception $e) {
+            error_log("Failed to send admin notification email: " . $e->getMessage());
+            throw new Exception("Failed to send admin notification");
+        }
 
-        $mail->setFrom($_ENV['MAIL_USER'], 'Insightned Contact Form');
-        $mail->addAddress($_ENV['MAIL_USER']);
-        $mail->Subject = 'New Contact Form Submission';
-        $mail->Body = "Name: {$data['name']}\n";
-        $mail->Body .= "Email: {$data['email']}\n";
-        $mail->Body .= "Phone: {$data['phone']}\n";
-        $mail->Body .= "Message: {$data['message']}\n";
+        try {
+            $userMail->send();
+            error_log("User confirmation email sent successfully");
+            
+            http_response_code(200);
+            echo json_encode([
+                'success' => true,
+                'message' => 'Your message has been received. Please check your email for confirmation.'
+            ]);
+        } catch (Exception $e) {
+            error_log("Failed to send user confirmation email: " . $e->getMessage());
+            throw new Exception("Failed to send confirmation email");
+        }
 
-        $mail->send();
-
-        echo json_encode(['success' => true, 'message' => 'Message sent successfully']);
+        // Success response is already sent in the try-catch block above
     } else {
         throw new Exception('Failed to save message');
     }
