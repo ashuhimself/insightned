@@ -12,8 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
         btnText.style.display = 'none';
         btnLoading.style.display = 'inline-block';
         
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        const data = {
+            name: form.querySelector('#name').value.trim(),
+            email: form.querySelector('#email').value.trim(),
+            message: form.querySelector('#message').value.trim(),
+            phone: form.querySelector('#phone').value.trim()
+        };
+        
+        // Validate form data
+        if (!data.name || !data.email || !data.message) {
+            alert('Please fill in all required fields.');
+            btnLoading.style.display = 'none';
+            btnText.style.display = 'inline-block';
+            return;
+        }
         
         try {
             const response = await fetch('api/contact.php', {

@@ -53,12 +53,11 @@
                 <!-- Contact Form -->
                 <div class="contact-form-container">
                     <h2>Send us a Message</h2>
-                    <form class="contact-form" id="contactForm" action="api/contact.php" method="POST">
-                        <input type="hidden" name="csrf_token" id="csrf_token">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-row">
                             <input type="text" id="name" name="name" placeholder="Full Name" required 
-                                    pattern="[A-Za-z\s]{2,50}" 
-                                    title="Name should only contain letters and spaces, length between 2-50 characters">
+                                    pattern="[A-Za-zÀ-ÿ\s\-']{2,50}" 
+                                    title="Please enter a valid name (2-50 characters)">
                         </div>
                         <div class="form-row">
                             <input type="email" id="email" name="email" placeholder="Email Address" required

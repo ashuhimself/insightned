@@ -20,9 +20,21 @@ header('Content-Type: application/json');
 
 // Get JSON data
 $json = file_get_contents('php://input');
-$data = json_decode($json, true);
+if ($json === false) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Failed to read request data']);
+    exit;
+}
 
-if (!$data) {
+$data = json_decode($json, true);
+if (json_last_error() !== JSON_ERROR_NONE) {
+    error_log("JSON Error: " . json_last_error_msg() . " - Raw input: " . $json);
+    http_response_code(400);
+    echo json_encode(['success' => false, 'message' => 'Invalid JSON format: ' . json_last_error_msg()]);
+    exit;
+}
+
+if (!$data || !is_array($data)) {
     echo json_encode(['success' => false, 'message' => 'Invalid JSON data']);
     exit;
 }
@@ -36,6 +48,7 @@ try {
         'message' => $_POST['message'] ?? ''
     ];
 
+    // Validate required fields
     if (empty($data['name']) || empty($data['email']) || empty($data['message'])) {
         throw new Exception('Please fill all required fields');
     }
@@ -47,8 +60,11 @@ try {
         DB_PASS
     );
     
+    // Ensure phone is not null if empty
+    $phone = !empty($data['phone']) ? $data['phone'] : '';
+    
     $stmt = $db->prepare("INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)");
-    if ($stmt->execute([$data['name'], $data['email'], $data['phone'], $data['message']])) {
+    if ($stmt->execute([$data['name'], $data['email'], $phone, $data['message']])) {
         $emailStatus = ['admin' => true, 'user' => true];
         
         // Identical setup to test_email.php
