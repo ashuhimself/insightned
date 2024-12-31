@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', animateTextLines);
     
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
+    const contactForms = document.querySelectorAll('#contactForm');
+    contactForms.forEach(form => {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const submitBtn = this.querySelector('.footer-submit-btn');
+            const submitBtn = this.querySelector('.footer-submit-btn, .submit-btn');
             const loadingSpinner = submitBtn.querySelector('.btn-loading');
             const successIcon = submitBtn.querySelector('.btn-success');
             const btnText = submitBtn.querySelector('.btn-text');
@@ -79,5 +79,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 btnText.style.display = 'inline-block';
             }
         });
-    }
+    });
 }); 
