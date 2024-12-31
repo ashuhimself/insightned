@@ -39,7 +39,7 @@ $data = json_decode($json, true);
 if (json_last_error() !== JSON_ERROR_NONE) {
     error_log("JSON Error: " . json_last_error_msg() . " - Raw input: " . $json);
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Invalid JSON format: ' . json_last_error_msg()]);
+    echo json_encode(['success' => false, 'message' => 'Invalid JSON format']);
     exit;
 }
 
