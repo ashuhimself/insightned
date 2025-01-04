@@ -75,6 +75,7 @@
     }
     </script>
 
+
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -84,18 +85,18 @@
 <body id="top">
     <!-- Navigation -->
     <nav class="main-nav">
-        <div class="container">
+        <div class="container" >
             <a href="#top" class="logo">
                 <span class="logo-text">Insightned</span>
             </a>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#services">Services</a>
                 <a href="#case-studies">Case Studies</a>
                 <a href="about.html">About</a>
                 <!-- <a href="#blog">Blog</a> -->
                 <a href="contact.html" class="cta-button" target="_blank">Contact Us</a>
             </div>
-            <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+            <button class="mobile-menu-toggle" aria-label="Toggle Menu" id="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -377,6 +378,29 @@
             <p class="section-subtitle">Success Stories from Our Clients</p>
 
             <div class="case-studies-grid">
+                 <!-- Health care -->
+                 <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://img.freepik.com/free-photo/medical-banner-with-doctor-working-laptop_23-2149611211.jpg" alt="Healthcare Case Study">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Health Care</h3>
+                        <p>Transforming Healthcare Efficiency: How AI-Powered Appointment Scheduling Revolutionized Patient Care at a Multi-Specialty Clinic.</p>
+                        <a href="case-studies.html#health-care" class="case-study-link" target="_blank">Read Case Study →</a>
+                    </div>
+                </div>
+
+                <!-- logistics -->
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://res.cloudinary.com/dzvtpzf6b/image/upload/v1735990582/Healthcare_iv6zc6.jpg" alt="Logistics Case Study">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>Logistics</h3>
+                        <p>Revolutionizing Logistics: How AI-Driven Automation Boosted Efficiency and Customer Satisfaction for a Nationwide Fleet.</p>
+                        <a href="case-studies.html#logistics" class="case-study-link" target="_blank">Read Case Study →</a>
+                    </div>
+                </div>
                 <!-- Customer 360° Analytics -->
                 <div class="case-study-card">
                     <div class="case-study-image">
@@ -448,6 +472,8 @@
                         <a href="case-studies.html#automated-mlops-pipeline" class="case-study-link" target="_blank">Read Case Study →</a>
                     </div>
                 </div>
+
+               
             </div>
         </div>
     </section>
@@ -544,5 +570,16 @@
     <script src="js/section-toggle.js"></script>
     <script src="js/data-mesh.js"></script>
     <script src="js/main.js"></script>
+    <!-- to add menu bar -->
+    <script>
+        const mobilemenuToggle = document.getElementById('menu-toggle')
+        const navLinks = document.getElementById('nav-links')
+
+
+        mobilemenuToggle.addEventListener('click', () =>{
+            navLinks.classList.toggle('active')
+        })
+
+    </script>
 </body>
 </html> 
