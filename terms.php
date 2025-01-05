@@ -1,15 +1,68 @@
-<?php require_once 'includes/common-meta.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <?php
-    outputCommonMeta(
-        '/terms',
-        'Terms of Service | Insightned',
-        'Review Insightned\'s terms of service agreement. Learn about our policies, user responsibilities, and service conditions.'
-    );
-    ?>
+<head><?php require_once 'includes/meta-tags-config.php'; ?>
+<?php echo getMetaTags('terms', ''); ?>
+
+    
+    
+    
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/legal.css">
+    <style>
+        .terms-content {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        .terms-content h1 {
+            margin-bottom: 30px;
+        }
+        .terms-content h2 {
+            margin: 30px 0 15px;
+        }
+        .terms-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
-<?php include 'terms.html'; ?>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Insightned</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#case-studies">Case Studies</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="cta-button">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="terms-content">
+        <h1>Terms of Service</h1>
+        <p>Last updated: March 19, 2024</p>
+
+        <h2>1. Services</h2>
+        <p>Insightned provides data analytics, AI solutions, and consulting services subject to these terms.</p>
+
+        <h2>2. Client Obligations</h2>
+        <p>Clients agree to:</p>
+        <ul>
+            <li>Provide accurate information</li>
+            <li>Maintain confidentiality of proprietary information</li>
+            <li>Use services in compliance with applicable laws</li>
+        </ul>
+
+        <h2>3. Intellectual Property</h2>
+        <p>All intellectual property rights remain with Insightned unless explicitly agreed otherwise.</p>
+
+        <h2>4. Contact</h2>
+        <p>For any questions about these Terms, please contact us at:</p>
+        <p>Email: ashutosh@insightned.com</p>
+        <p>Phone: +91 9956167803</p>
+    </div>
+</body>
+</html> 

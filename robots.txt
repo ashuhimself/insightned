@@ -1,11 +1,7 @@
 User-agent: *
+Allow: /
 Disallow: /api/
 Disallow: /admin/
-Disallow: /private/
-Allow: /
-Allow: /services/
-Allow: /case-studies.html
-Allow: /about.html
-Allow: /contact.html
+Disallow: /includes/
 
-Sitemap: https://insightned.com/sitemap.xml 
+Sitemap: https://insightned.com/sitemap.xml

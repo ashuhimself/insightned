@@ -1,15 +1,82 @@
-<?php require_once 'includes/common-meta.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <?php
-    outputCommonMeta(
-        '/privacy',
-        'Privacy Policy | Insightned',
-        'Read Insightned\'s privacy policy to understand how we collect, use, and protect your personal information when you use our services.'
-    );
-    ?>
+<head><?php require_once 'includes/meta-tags-config.php'; ?>
+<?php echo getMetaTags('privacy', ''); ?>
+
+    
+    
+    
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/legal.css">
+    <style>
+        .privacy-content {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+        .privacy-content h1 {
+            margin-bottom: 30px;
+        }
+        .privacy-content h2 {
+            margin: 30px 0 15px;
+        }
+        .privacy-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
-<?php include 'privacy.html'; ?>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Insightned</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#case-studies">Case Studies</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="cta-button">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="privacy-content">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: March 19, 2024</p>
+
+        <h2>1. Information We Collect</h2>
+        <p>We collect information you provide directly to us when using our services, including:</p>
+        <ul>
+            <li>Name and contact information</li>
+            <li>Business information</li>
+            <li>Communication preferences</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+            <li>Provide and improve our services</li>
+            <li>Communicate with you about our services</li>
+            <li>Protect against fraudulent or illegal activity</li>
+        </ul>
+
+        <h2>3. Data Security</h2>
+        <p>We implement appropriate security measures to protect your personal information.</p>
+
+        <h2>4. Contact Us</h2>
+        <p>For any questions about this Privacy Policy, please contact us at:</p>
+        <p>Email: ashutosh@insightned.com</p>
+        <p>Phone: +91 9956167803</p>
+    </div>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5R6P2N7KBJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5R6P2N7KBJ');
+    </script>
+</body>
+</html> 

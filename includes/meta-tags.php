@@ -29,6 +29,12 @@ function outputMetaTags($page = 'home', $subpage = '') {
     <meta property="og:description" content="<?php echo htmlspecialchars($meta['description']); ?>">
     <meta property="og:image" content="<?php echo htmlspecialchars($meta['og_image']); ?>">
     <meta property="og:site_name" content="Insightned">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter -->
@@ -42,6 +48,11 @@ function outputMetaTags($page = 'home', $subpage = '') {
     <!-- Additional SEO Tags -->
     <meta name="google-site-verification" content="your-verification-code">
     <meta name="msvalidate.01" content="your-bing-verification-code">
+    
     <?php
+    require_once 'structured-data.php';
+    outputStructuredData($page, $subpage);
+    require_once 'breadcrumbs.php';
+    outputBreadcrumbs($page, $subpage);
 }
 ?> 

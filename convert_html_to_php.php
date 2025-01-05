@@ -1,19 +1,21 @@
 <?php
 
-$htmlFiles = [
-    'index.html' => 'index.php',
-    'about.html' => 'about.php',
-    'case-studies.html' => 'case-studies.php',
-    'contact.html' => 'contact.php',
-    'services/data-engineering.html' => 'services/data-engineering.php',
-    'services/mlops.html' => 'services/mlops.php',
-    'services/business-analytics.html' => 'services/business-analytics.php',
-    'services/data-warehouse.html' => 'services/data-warehouse.php',
-    'services/ai-agent.html' => 'services/ai-agent.php',
-    'services/ad-platforms.html' => 'services/ad-platforms.php',
-    'services/data-migration.html' => 'services/data-migration.php',
-    'services/data-archi.html' => 'services/data-archi.php'
-];
+function findHtmlFiles($directory = '.') {
+    $htmlFiles = [];
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+    
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getExtension() === 'html') {
+            $relativePath = str_replace('\\', '/', ltrim(str_replace(realpath($directory), '', $file->getRealPath()), '/'));
+            $phpPath = substr($relativePath, 0, -5) . '.php';
+            $htmlFiles[$relativePath] = $phpPath;
+        }
+    }
+    
+    return $htmlFiles;
+}
+
+$htmlFiles = findHtmlFiles('.');
 
 function convertHtmlToPhp($inputFile, $outputFile) {
     $content = file_get_contents($inputFile);
@@ -59,10 +61,19 @@ function convertHtmlToPhp($inputFile, $outputFile) {
     }
 }
 
-// Create output directories if they don't exist
-if (!file_exists('services')) {
-    mkdir('services', 0755, true);
+// Process each HTML file
+foreach ($htmlFiles as $htmlFile => $phpFile) {
+    // Create output directory if it doesn't exist
+    $dir = dirname($phpFile);
+    if (!file_exists($dir)) {
+        mkdir($dir, 0755, true);
+    }
+    
+    // Convert the file
+    convertHtmlToPhp($htmlFile, $phpFile);
 }
+
+echo "\nAll HTML files have been converted to PHP!\n";
 
 // Convert each HTML file to PHP
 foreach ($htmlFiles as $html => $php) {
