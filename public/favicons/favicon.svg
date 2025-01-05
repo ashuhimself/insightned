@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="32" height="32" fill="#1a365d" rx="4"/>
+    
+    <!-- Letter I -->
+    <g transform="translate(8, 4)">
+        <!-- Vertical line -->
+        <rect x="6" y="2" width="4" height="22" fill="#63B3ED"/>
+        
+        <!-- Top and bottom -->
+        <rect x="2" y="2" width="12" height="3" fill="#63B3ED"/>
+        <rect x="2" y="21" width="12" height="3" fill="#63B3ED"/>
+        
+        <!-- Data circle -->
+        <circle cx="8" cy="13" r="3" fill="#4299E1"/>
+    </g>
+</svg> 
