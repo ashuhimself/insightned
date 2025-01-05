@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><?php require_once 'includes/meta-tags-config.php'; ?>
+<?php echo getMetaTags('contact', ''); ?>
+
+    
+    
+    
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/error-message.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">Insightned</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#case-studies">Case Studies</a>
+                <a href="about.html">About</a>
+                <a href="contact.html" class="cta-button">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="contact-page">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p class="contact-intro">Ready to transform your data journey? We're here to help.</p>
+            
+            <div class="contact-grid">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>contact@insightned.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 9956167803</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>HSR Layout, Bangalore, Karnataka, India</span>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <input type="text" id="name" name="name" placeholder="Full Name" required 
+                                    pattern="[A-Za-zÀ-ÿ\s\-']{2,50}" 
+                                    title="Please enter a valid name (2-50 characters)">
+                        </div>
+                        <div class="form-row">
+                            <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                        </div>
+                        <div class="form-row">
+                            <textarea id="message" name="message" placeholder="How can we help you with your data journey?" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                            <span class="btn-success" style="display: none;">
+                                <i class="fas fa-check"></i> Sent!
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+<script src="js/contact-form.js"></script>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5R6P2N7KBJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-5R6P2N7KBJ');
+    </script>
+    </body>
+</html> 

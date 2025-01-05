@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><?php require_once 'includes/meta-tags-config.php'; ?>
-<?php echo getMetaTags('ai-agent', 'ai-agent'); ?>
+<?php echo getMetaTags('mlops', 'mlops'); ?>
 
     
     
@@ -28,8 +28,8 @@
 
     <div class="service-hero">
         <div class="container">
-            <h1>AI Agent for Data Tasks</h1>
-            <p>Custom AI solutions for automated data processing and analysis</p>
+            <h1>AI & Machine Learning</h1>
+            <p>Streamline your machine learning operations from development to deployment</p>
         </div>
     </div>
 
@@ -39,24 +39,24 @@
                 <h2>Our Offerings</h2>
                 <div class="features-grid">
                     <div class="feature-card">
-                        <i class="fas fa-robot"></i>
-                        <h3>Automated Processing</h3>
-                        <p>Automate complex data processing tasks with AI agents.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-file-alt"></i>
-                        <h3>Intelligent Extraction</h3>
-                        <p>Extract valuable insights from unstructured data sources.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-fingerprint"></i>
-                        <h3>Pattern Recognition</h3>
-                        <p>Identify complex patterns and anomalies in your data.</p>
-                    </div>
-                    <div class="feature-card">
                         <i class="fas fa-brain"></i>
-                        <h3>Adaptive Learning</h3>
-                        <p>Continuously improve performance through machine learning.</p>
+                        <h3>Model Development</h3>
+                        <p>Build and train custom ML models tailored to your business needs.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Automated Deployment</h3>
+                        <p>Implement CI/CD pipelines for seamless model deployment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Performance Monitoring</h3>
+                        <p>Track and optimize model performance in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Model Optimization</h3>
+                        <p>Fine-tune models for improved accuracy and efficiency.</p>
                     </div>
                 </div>
 
@@ -162,8 +162,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="../js/main.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5R6P2N7KBJ"></script>
     <script>

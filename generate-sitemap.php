@@ -28,8 +28,12 @@ function generateSitemap() {
         }
     }
     
-    // Save sitemap
-    $xml->asXML('sitemap.xml');
+    // Format and save sitemap
+    $dom = new DOMDocument('1.0');
+    $dom->preserveWhiteSpace = false;
+    $dom->formatOutput = true;
+    $dom->loadXML($xml->asXML());
+    $dom->save('sitemap.xml');
 }
 
 generateSitemap();

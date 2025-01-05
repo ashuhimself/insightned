@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "php",
+            "request": "launch",
+            "name": "Check email configuration settings",
+            "program": "${workspaceFolder}/verify_email_setup.php"
+        },
+        {
+            "type": "php",
+            "request": "launch",
+            "name": "Check email configuration settings",
+            "program": "${workspaceFolder}/verify_email_setup.php"
+        }
+    ]
+}

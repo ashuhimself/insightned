@@ -2,33 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://insightned.com/</loc>
-        <lastmod>2024-03-19</lastmod>
+        <lastmod>2025-01-05</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
+        <priority>0.8</priority>
     </url>
-    <url>
+  <url>
         <loc>https://insightned.com/about.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc>https://insightned.com/case-studies.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://insightned.com/contact.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
+  <url>
         <loc>https://insightned.com/services/data-archi.html</loc>
-        <lastmod>2024-03-19</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
-    <!-- Add other service pages similarly -->
-</urlset> 
+  <url>
+        <loc>https://insightned.com/services/business-analytics.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/data-warehouse.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/data-migration.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/ai-agent.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/ad-platforms.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/mlops.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/services/data-engineering.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/case-studies.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+  <url>
+        <loc>https://insightned.com/contact.html</loc>
+        <lastmod>2025-01-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>
