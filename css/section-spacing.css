@@ -1,0 +1,15 @@
+/* Section spacing adjustments */
+.hero {
+    margin-bottom: 0;
+    padding-bottom: 30px;
+}
+
+.industries {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 0;
+}
+
+.services {
+    padding-top: 40px;
+}
