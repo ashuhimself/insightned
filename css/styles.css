@@ -379,6 +379,9 @@ body {
 .industries {
     padding: 60px 0;
     background: var(--light-bg);
+    display: block; /* Ensure the section is displayed */
+    visibility: visible; /* Ensure the section is visible */
+    opacity: 1; /* Ensure the section is fully opaque */
 }
 
 .industries-grid {
