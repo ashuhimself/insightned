@@ -573,8 +573,14 @@ body {
 }
 /* Tech Stack Section */
 
-
-
+#tech-stack {
+    padding: 60px 20px;
+    background: var(--light-bg);
+    position: relative;
+    display: block; /* Ensure the section is displayed */
+    visibility: visible; /* Ensure the section is visible */
+    opacity: 1; /* Ensure the section is fully opaque */
+}
 
 /* Add specific adjustments for certain logos */
 .tech-item img[alt="Python"],
@@ -1289,4 +1295,4 @@ body {
     .domain-card {
         padding: 1rem;
     }
-} 
+}
