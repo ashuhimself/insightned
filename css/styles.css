@@ -59,6 +59,11 @@ body {
     display: flex;
     overflow: hidden;
     position: relative;
+    cursor: grab;
+}
+
+.slider.active {
+    cursor: grabbing;
 }
 
 .slider-track {
