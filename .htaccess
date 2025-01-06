@@ -6,6 +6,9 @@ Header set Referrer-Policy "strict-origin-when-cross-origin"
 Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
+# Add Content Security Policy header
+Header set Content-Security-Policy "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com 'unsafe-inline' https://static.cloudflareinsights.com;"
+
 # Cache Control
 <FilesMatch "\.(jpg|jpeg|png|gif|svg|js|css|ico|png)$">
     Header set Cache-Control "max-age=31536000, public"
@@ -23,4 +26,4 @@ Options -Indexes
 # Add this if not already present
 <FilesMatch "\.(ico|png|svg)$">
     Header set Cache-Control "max-age=31536000, public"
-</FilesMatch> 
+</FilesMatch>
