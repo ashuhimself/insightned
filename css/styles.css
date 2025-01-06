@@ -1191,3 +1191,52 @@ body {
         padding: 1rem;
     }
 }
+
+/* Tech Stack Slider Styles */
+.tech-stack-slider {
+    padding: 40px 0;
+    background: var(--light-bg);
+    overflow: hidden;
+}
+
+.slider-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    animation: slide 40s linear infinite;
+}
+
+.tech-item {
+    flex: 0 0 auto;
+    width: 150px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-item img {
+    max-width: 100px; /* Set a maximum width for the logos */
+    max-height: 50px; /* Set a maximum height for the logos */
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.tech-item:hover img {
+    transform: scale(1.1);
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
