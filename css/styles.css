@@ -28,7 +28,9 @@ body {
 }
 
 /* tech styles */
-.tech-stack {
+
+/* Remove tech stack styles */
+/* .tech-stack {
     padding: 60px 20px;
     background: #fff;
     position: relative;
@@ -47,7 +49,6 @@ body {
     color: #555;
 }
 
-/* Slider Styles */
 .slider-container {
     position: relative;
     max-width: 1200px;
@@ -91,7 +92,6 @@ body {
     object-fit: contain;
 }
 
-/* Slider Buttons */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -125,7 +125,6 @@ body {
     opacity: 1;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .tech-item {
         flex: 0 0 calc(50% - 10px);
@@ -142,7 +141,13 @@ body {
     .tech-item {
         flex: 0 0 calc(100% - 10px);
     }
-}
+} */
+
+/* Slider Styles */
+
+/* Slider Buttons */
+
+/* Media Queries */
 
 
 
@@ -465,7 +470,7 @@ body {
 .case-study-content h3 {
     font-size: 1.25rem;
     margin-bottom: 1rem;
-    color: var(--secondary-color);
+    color: var (--secondary-color);
     line-height: 1.4;
     min-height: 2.8em;
 }
@@ -578,14 +583,6 @@ body {
 }
 /* Tech Stack Section */
 
-#tech-stack {
-    padding: 60px 20px;
-    background: var(--light-bg);
-    position: relative;
-    display: block; /* Ensure the section is displayed */
-    visibility: visible; /* Ensure the section is visible */
-    opacity: 1; /* Ensure the section is fully opaque */
-}
 
 /* Add specific adjustments for certain logos */
 .tech-item img[alt="Python"],
