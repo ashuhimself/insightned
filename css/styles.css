@@ -501,35 +501,24 @@ body {
 } 
 
 /* Industries Section */
-.industries {
-    padding: 80px 0;
+/* .industries {
+    padding: 60px 0;
     background: var(--light-bg);
+    height: 650px;
+    position: relative;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+    display: none;
 }
 
-.industries-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-}
-
-.industry-card {
-    background: var(--white);
-    padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.industry-card:hover {
-    transform: translateY(-5px);
-}
-
-.industry-icon img {
-    max-width: 60px;
-    margin-bottom: 1rem;
-}
+.industries.active {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    
+} */
 
 .domains-horizontal {
     display: grid;
@@ -1307,71 +1296,5 @@ body {
     
     .domain-card {
         padding: 1rem;
-    }
-}
-
-/* Tech Stack Slider Section */
-.tech-stack-slider {
-    padding: 60px 0;
-    background: var(--white);
-}
-
-.slider-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.slider {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-}
-
-.slider-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    animation: slide 40s linear infinite;
-}
-
-.tech-item {
-    flex: 0 0 calc(12.12% - 10px);
-    margin-right: 10px;
-    text-align: center;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-}
-
-.tech-item img {
-    max-width: 100px;
-    height: auto;
-    object-fit: contain;
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-@media (max-width: 768px) {
-    .tech-item {
-        flex: 0 0 calc(50% - 10px);
-    }
-}
-
-@media (max-width: 480px) {
-    .tech-item {
-        flex: 0 0 calc(100% - 10px);
     }
 }
