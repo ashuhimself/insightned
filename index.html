@@ -145,6 +145,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="public/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="public/favicons/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+
+    <!-- New Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon.ico">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
 </head>
 <body id="top">
     <!-- Navigation -->
@@ -231,7 +237,8 @@
                 <h2 class="section-title">Industries We Serve</h2>
                 <p class="section-subtitle">Delivering Data Excellence Across Diverse Sectors</p>
                 <div class="industries-content">
-                    <div class="domains-horizontal">
+                    <!-- <div class="domains-horizontal"> -->
+                    <div class="row first-row">
                         <div class="domain-card">
                             <div class="domain-icon">
                                 <img src="images/icons/banking.svg" alt="Banking Icon">
@@ -245,7 +252,8 @@
                             </div>
                             <h3>Loyalty Programs</h3>
                         </div>
-
+                    </div>
+                    <div class="row second-row">
                         <div class="domain-card">
                             <div class="domain-icon">
                                 <img src="images/icons/advertising.svg" alt="Advertising Icon">
@@ -267,81 +275,7 @@
                             <h3>Hospitality</h3>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="tech-stack" class="tech-stack">
-            <div class="container">
-                <h2 class="section-title">Our Tech Stack</h2>
-                <p class="section-subtitle">Powered by Industry-Leading Technologies</p>
-                <div class="tech-content">
-                    <div class="tech-stack-grid">
-                        <!-- Tech Stack Rows -->
-                        <div class="tech-row">
-                            <!-- Technology Items -->
-                            <div class="tech-item">
-                                <img src="images/logos/aws.svg" alt="AWS">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/gcp.svg" alt="Google Cloud Platform">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/azure.svg" alt="Microsoft Azure">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/kubernetes.svg" alt="Kubernetes">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/docker.svg" alt="Docker">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/terraform.svg" alt="Terraform">
-                            </div>
-                        </div>
-                        <!-- Data & Analytics Row -->
-                        <div class="tech-row">
-                            <div class="tech-item">
-                                <img src="images/logos/spark.svg" alt="Apache Spark">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/Airflow.svg" alt="Apache Airflow">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/kafka.svg" alt="Apache Kafka">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/postgresql.svg" alt="PostgreSQL">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/mongodb.svg" alt="MongoDB">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/databricks.svg" alt="Databricks">
-                            </div>
-                        </div>
-                        <!-- ML & Programming Row -->
-                        <div class="tech-row">
-                            <div class="tech-item">
-                                <img src="images/logos/tensorflow.svg" alt="TensorFlow">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/pytorch.svg" alt="PyTorch">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/python.svg" alt="Python">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/scala.svg" alt="Scala">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/github.svg" alt="GitHub">
-                            </div>
-                            <div class="tech-item">
-                                <img src="images/logos/hadoop.svg" alt="Hadoop">
-                            </div>
-                        </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </section>
@@ -544,6 +478,34 @@
         </div>
     </section>
 
+    <!-- Tech stack section -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Our Tech Stack</h2>
+            <p class="section-subtitle">Powered by Industry-Leading Technologies</p>
+            <div class="slider-container">
+                <!-- <button class="slider-btn prev-btn" aria-label="Previous" id="prev-btn">&#8592;</button> -->
+                <div class="slider">
+                    <div class="slider-track">
+                        <!-- Tech Stack Items -->
+                        <div class="tech-item"><img src="images/logos/aws.svg" alt="AWS"></div>
+                        <div class="tech-item"><img src="images/logos/gcp.svg" alt="Google Cloud Platform"></div>
+                        <div class="tech-item"><img src="images/logos/azure.svg" alt="Microsoft Azure"></div>
+                        <div class="tech-item"><img src="images/logos/kubernetes.svg" alt="Kubernetes"></div>
+                        <div class="tech-item"><img src="images/logos/docker.svg" alt="Docker"></div>
+                        <div class="tech-item"><img src="images/logos/terraform.svg" alt="Terraform"></div>
+                        <div class="tech-item"><img src="images/logos/spark.svg" alt="Apache Spark"></div>
+                        <div class="tech-item"><img src="images/logos/airflow.svg" alt="Apache Airflow"></div>
+                        <div class="tech-item"><img src="images/logos/kafka.svg" alt="Apache Kafka"></div>
+                        <div class="tech-item"><img src="images/logos/postgresql.svg" alt="PostgreSQL"></div>
+                        <div class="tech-item"><img src="images/logos/mongodb.svg" alt="MongoDB"></div>
+                        <div class="tech-item"><img src="images/logos/databricks.svg" alt="Databricks"></div>
+                    </div>
+                </div>
+                <!-- <button class="slider-btn next-btn"  id= "next-btn"aria-label="Next">&#8594;</button> -->
+            </div>
+        </div>
+    </section>
     <!-- Footer Section -->
     <footer class="footer">
         <div class="container">
@@ -645,6 +607,10 @@
         mobilemenuToggle.addEventListener('click', () =>{
             navLinks.classList.toggle('active')
         })
+
+
+
+       
 
     </script>
     <!-- Google tag (gtag.js) -->
