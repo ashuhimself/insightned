@@ -165,7 +165,7 @@
     </header>
 
     <!-- Combined Sections Container -->
-    <div class="toggle-sections-container">
+    <div class="industry-section-container">
         <section id="industries" class="industries active">
             <div class="container">
                 <h2 class="section-title">Industries We Serve</h2>
@@ -418,25 +418,34 @@
             <h2 class="section-title">Our Tech Stack</h2>
             <p class="section-subtitle">Powered by Industry-Leading Technologies</p>
             <div class="slider-container">
-                <!-- <button class="slider-btn prev-btn" aria-label="Previous" id="prev-btn">&#8592;</button> -->
                 <div class="slider">
-                    <div class="slider-track">
-                        <!-- Tech Stack Items -->
-                        <div class="tech-item"><img src="images/logos/aws.svg" alt="AWS"></div>
-                        <div class="tech-item"><img src="images/logos/gcp.svg" alt="Google Cloud Platform"></div>
-                        <div class="tech-item"><img src="images/logos/azure.svg" alt="Microsoft Azure"></div>
-                        <div class="tech-item"><img src="images/logos/kubernetes.svg" alt="Kubernetes"></div>
-                        <div class="tech-item"><img src="images/logos/docker.svg" alt="Docker"></div>
-                        <div class="tech-item"><img src="images/logos/terraform.svg" alt="Terraform"></div>
-                        <div class="tech-item"><img src="images/logos/spark.svg" alt="Apache Spark"></div>
-                        <div class="tech-item"><img src="images/logos/airflow.svg" alt="Apache Airflow"></div>
-                        <div class="tech-item"><img src="images/logos/kafka.svg" alt="Apache Kafka"></div>
-                        <div class="tech-item"><img src="images/logos/postgresql.svg" alt="PostgreSQL"></div>
-                        <div class="tech-item"><img src="images/logos/mongodb.svg" alt="MongoDB"></div>
-                        <div class="tech-item"><img src="images/logos/databricks.svg" alt="Databricks"></div>
-                    </div>
+                    <!-- Tech Stack Items -->
+                    <div class="tech-item"><img src="images/logos/aws.svg" alt="AWS"></div>
+                    <div class="tech-item"><img src="images/logos/gcp.svg" alt="Google Cloud Platform"></div>
+                    <div class="tech-item"><img src="images/logos/azure.svg" alt="Microsoft Azure"></div>
+                    <div class="tech-item"><img src="images/logos/kubernetes.svg" alt="Kubernetes"></div>
+                    <div class="tech-item"><img src="images/logos/docker.svg" alt="Docker"></div>
+                    <div class="tech-item"><img src="images/logos/terraform.svg" alt="Terraform"></div>
+                    <div class="tech-item"><img src="images/logos/spark.svg" alt="Apache Spark"></div>
+                    <div class="tech-item"><img src="images/logos/airflow.svg" alt="Apache Airflow"></div>
+                    <div class="tech-item"><img src="images/logos/kafka.svg" alt="Apache Kafka"></div>
+                    <div class="tech-item"><img src="images/logos/postgresql.svg" alt="PostgreSQL"></div>
+                    <div class="tech-item"><img src="images/logos/mongodb.svg" alt="MongoDB"></div>
+                    <div class="tech-item"><img src="images/logos/databricks.svg" alt="Databricks"></div>
+                    <!-- Duplicate the slides for seamless looping -->
+                    <div class="tech-item"><img src="images/logos/aws.svg" alt="AWS"></div>
+                    <div class="tech-item"><img src="images/logos/gcp.svg" alt="Google Cloud Platform"></div>
+                    <div class="tech-item"><img src="images/logos/azure.svg" alt="Microsoft Azure"></div>
+                    <div class="tech-item"><img src="images/logos/kubernetes.svg" alt="Kubernetes"></div>
+                    <div class="tech-item"><img src="images/logos/docker.svg" alt="Docker"></div>
+                    <div class="tech-item"><img src="images/logos/terraform.svg" alt="Terraform"></div>
+                    <div class="tech-item"><img src="images/logos/spark.svg" alt="Apache Spark"></div>
+                    <div class="tech-item"><img src="images/logos/airflow.svg" alt="Apache Airflow"></div>
+                    <div class="tech-item"><img src="images/logos/kafka.svg" alt="Apache Kafka"></div>
+                    <div class="tech-item"><img src="images/logos/postgresql.svg" alt="PostgreSQL"></div>
+                    <div class="tech-item"><img src="images/logos/mongodb.svg" alt="MongoDB"></div>
+                    <div class="tech-item"><img src="images/logos/databricks.svg" alt="Databricks"></div>
                 </div>
-                <!-- <button class="slider-btn next-btn"  id= "next-btn"aria-label="Next">&#8594;</button> -->
             </div>
         </div>
     </section>
@@ -532,8 +541,9 @@
     <script src="js/section-toggle.js"></script>
     <script src="js/data-mesh.js"></script>
     <script src="js/main.js"></script>
-    <!-- to add menu bar -->
+   
     <script>
+        // to add menu bar 
         const mobilemenuToggle = document.getElementById('menu-toggle')
         const navLinks = document.getElementById('nav-links')
 
