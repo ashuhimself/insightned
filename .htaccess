@@ -4,26 +4,45 @@ Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 Header set Referrer-Policy "strict-origin-when-cross-origin"
 Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
-# Add Content Security Policy header
-Header set Content-Security-Policy "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com 'unsafe-inline' https://static.cloudflareinsights.com;"
+# Content Security Policy - refine for better security and emoji font support
+Header set Content-Security-Policy "
+    default-src 'self'; 
+    script-src 'self' 'strict-dynamic' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://static.cloudflareinsights.com; 
+    style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; 
+    img-src 'self' data: https://www.yourdomain.com; 
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;  # Allow fonts from Google Fonts and other font CDNs
+    connect-src 'self'; 
+    frame-ancestors 'none'; 
+    object-src 'none'; 
+    require-trusted-types-for 'script';
+"
 
-# Cache Control
-<FilesMatch "\.(jpg|jpeg|png|gif|svg|js|css|ico|png)$">
+# Cache Control - Consolidate caching rules for static files
+<FilesMatch "\.(jpg|jpeg|png|gif|svg|js|css|ico)$">
     Header set Cache-Control "max-age=31536000, public"
 </FilesMatch>
 
 # Prevent directory listing
 Options -Indexes
 
-# Protect sensitive files
-<FilesMatch "^\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|README\.md">
-    Order allow,deny
-    Deny from all
-</FilesMatch> 
+# Protect sensitive files (Apache 2.4 syntax)
+<FilesMatch "^\.env|composer\.json|composer\.lock|package\.json|package-lock\.json|README\.md$">
+    Require all denied
+</FilesMatch>
 
-# Add this if not already present
-<FilesMatch "\.(ico|png|svg)$">
+# Prevent access to .htaccess itself
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# Optionally add caching headers for other static files (fonts)
+<FilesMatch "\.(woff|woff2|eot|ttf)$">
     Header set Cache-Control "max-age=31536000, public"
+</FilesMatch>
+
+# Prevent access to potentially dangerous files (e.g., logs, backups, config files)
+<FilesMatch "\.(ini|log|conf|sh|bak|sql|tar|zip)$">
+    Require all denied
 </FilesMatch>
