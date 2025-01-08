@@ -7,7 +7,19 @@ Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 
 # Content Security Policy - refine for better security and emoji font support
-Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'strict-dynamic' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; img-src 'self' data: https://www.yourdomain.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; connect-src 'self'; frame-ancestors 'none'; object-src 'none'; require-trusted-types-for 'script';"
+Header set Content-Security-Policy "
+  default-src 'self';
+  script-src 'self' 'strict-dynamic' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://static.cloudflareinsights.com https://www.googletagmanager.com/gtag/js https://www.google-analytics.com;
+  style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
+  img-src 'self' data: https://www.yourdomain.com https://www.gravatar.com;
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com https://yourdomain.com;
+  connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com;
+  frame-ancestors 'none';
+  object-src 'none';
+  require-trusted-types-for 'script';
+  base-uri 'self';
+  form-action 'self';
+"
 
 # Cache Control - Consolidate caching rules for static files
 <FilesMatch "\.(jpg|jpeg|png|gif|svg|js|css|ico)$">
